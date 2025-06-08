@@ -8,7 +8,12 @@
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  background-color: #a8def7; /* You can change this color if you like */
+  /* Set a background image for the header */
+  background-image: url('img/intel header.png'); /* Add the background image */
+  background-size: cover;    /* Make the image cover the header */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-position: center;  /* Center the image */
+  background-color: #a8def7; /* Fallback color */
   padding: 30px 0;
   box-sizing: border-box;
   margin-top: 0;
@@ -65,7 +70,8 @@ body {
 }
 
 /* Limit the width of the main content and center it on wide screens */
-section {
+/* Only apply these styles to the timeline section */
+.timeline-section {
   /* Show exactly 4 cards at a time on large screens */
   width: calc(4 * 250px + 3 * 24px); /* 4 cards + 3 gaps */
   max-width: calc(4 * 250px + 3 * 24px);
@@ -80,9 +86,9 @@ section {
 }
 
 /* Style each timeline card as a square with sharp corners */
-section > div {
+.timeline-section > div {
   background: #fff;
-  color: #064a6f;
+  color: #ffffff;
   border-radius: 0;           /* Sharp corners */
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
   padding: 0;
@@ -98,15 +104,25 @@ section > div {
   position: relative; /* Needed for overlay positioning */
 
   /* Add these lines for the card background image */
-  background-image: url('img/bluesquare.jpeg'); /* Set the card background image */
+  background-image: url('img/intel header.png'); /* Set the card background image */
   background-size: cover;    /* Make the image cover the card */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-position: center;  /* Center the image */
 
 }
+/* Make text inside timeline cards smaller so images have more space */
+.timeline-section > div h2 {
+  font-size: 1.5em; /* Smaller heading */
+  margin: 8px 0 4px 0; /* Less space above and below */
+}
+
+.timeline-section > div h3 {
+  font-size: 1.1em; /* Smaller subheading */
+  margin: 4px 0 4px 0;
+}
 
 /* Hide the paragraph text by default and use it as an overlay */
-section > div p {
+.timeline-section > div p {
   margin: 0;
   position: absolute;
   top: 0;
@@ -115,38 +131,37 @@ section > div p {
   height: 100%;          /* Overlay matches card height */
   transform: none;       /* No shifting, overlay sits directly over card */
   box-sizing: border-box;
-  background: rgba(186, 234, 255, 0.96);
+  background: rgba(40, 102, 156, 0.96);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
   opacity: 0;
   transition: opacity 0.3s;
   padding: 0px;
   border-radius: 0;
-  font-size: 1em;
+  font-size: 0.8em;
   z-index: 2;
   pointer-events: none;
   box-shadow: 0 8px 32px rgba(0,0,0,0.18);
 }
 
 /* Show overlay on hover */
-section > div:hover p {
+.timeline-section > div:hover p {
   opacity: 1;
   /* No transform needed */
   pointer-events: auto;
 }
 
 /* Make sure the image stays below the overlay */
-section > div img {
+.timeline-section > div img {
   position: relative;
   z-index: 1;
 }
 
 /* Make images inside cards fill the square card with sharp corners */
 
-section > div img {
+.timeline-section > div img {
   width: 200px;         /* Set the width */
   height: 150px;        /* Set the height */
   object-fit: cover;    /* Crop the image to fill the box */
@@ -156,11 +171,11 @@ section > div img {
 }
 
 /* Hide scrollbar for a cleaner look (optional for beginners) */
-section::-webkit-scrollbar {
+.timeline-section::-webkit-scrollbar {
   height: 10px;
   background: #eee;
 }
-section::-webkit-scrollbar-thumb {
+.timeline-section::-webkit-scrollbar-thumb {
   background: #bbb;
   border-radius: 5px;
 }
@@ -186,7 +201,7 @@ section::-webkit-scrollbar-thumb {
     margin: 15px auto;
   }
 
-  section {
+  .timeline-section {
     flex-direction: column; /* Stack cards in a column */
     gap: 16px;              /* Space between cards */
     align-items: center;    /* Center cards horizontally */
@@ -194,7 +209,7 @@ section::-webkit-scrollbar-thumb {
     max-width: 100%; /* Allow full width on small screens */
   }
 
-  section > div {
+  .timeline-section > div {
     min-width: 90vw;        /* Make cards wider */
     max-width: 90vw;
     flex: 0 0 auto;         /* Let cards grow naturally */
@@ -215,7 +230,7 @@ section::-webkit-scrollbar-thumb {
     margin-right: auto;
 
   }
-  section > div img {
+  .timeline-section > div img {
     width: 90vw;        /* 90% of the screen width */
     max-width: 350px;   /* Optional: don't let it get too big */
     height: 100px;       /* Make the image shorter on small screens */
@@ -241,4 +256,49 @@ h2 {
 
 h3 {
   margin-top: 2px;    /* Less space above h3 */
+}
+
+/* Style for the footer section */
+.footer-section {
+  background-color: #1a4ec8;
+  padding: 30px 0;
+  margin-top: 100px;
+  margin-bottom: 0px;
+}
+
+/* Center the footer text */
+.main-footer p {
+  text-align: center;
+  margin: 0;
+}
+
+/* Outline button style for the 3-column section */
+.outline-btn {
+  display: inline-block;              /* Makes the link look like a button */
+  padding: 10px 20px;                 /* Adds space inside the button */
+  border: 2px solid #007bff;          /* Blue border */
+  color: #007bff;                     /* Blue text */
+  background-color: transparent;       /* No fill */
+  text-decoration: none;               /* Removes underline */
+  border-radius: 4px;                  /* Rounded corners */
+  font-weight: bold;                   /* Bold text */
+  margin-top: 10px;                    /* Space above the button */
+  transition: background 0.2s, color 0.2s; /* Smooth hover effect */
+}
+
+/* Change background and text color when hovering over the button */
+.outline-btn:hover {
+  background-color: #007bff;           /* Blue background on hover */
+  color: #fff;                         /* White text on hover */
+}
+
+/* Outline around each column in the 3-column section */
+.column-outline {
+  border: none;                /* Remove the blue outline */
+  border-radius: 0;            /* Remove rounded corners */
+  background-color: transparent;/* Remove background color */
+  padding: 0;                  /* Remove extra padding */
+  margin-left: 0;              /* Remove left margin */
+  margin-right: 0;             /* Remove right margin */
+  margin-bottom: 20px;         /* Keep space below each column for separation */
 }
